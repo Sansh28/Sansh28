@@ -1,16 +1,41 @@
-## Hi there 👋
+# Hi, I'm Sansh Goel
 
-<!--
-**Sansh28/Sansh28** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Software Engineer | AI Engineer | Full Stack Developer
 
-Here are some ideas to get you started:
+Recent Computer Science graduate from the University of Colorado Boulder.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Tech Stack
+
+Python
+Java
+JavaScript
+TypeScript
+React
+Node.js
+AWS
+SQL Server
+Snowflake
+Power BI
+
+## Featured Projects
+
+### Savant AI
+HackCU Winning AI Project
+
+### Portfolio Website
+Personal developer portfolio
+
+### Polymorphia
+Object-Oriented Design Game
+
+## Currently Learning
+
+Cloud Architecture
+LLMs
+System Design
+
+## Connect
+
+LinkedIn
+Portfolio
+Email
