@@ -10,38 +10,61 @@ Savant helps a reader move from a research paper to questions, supporting citati
 
 Savant received the MLH MongoDB Track award at HackCU, as recorded in my [portfolio project background](https://sansh-portfolio.vercel.app/#projects). It was team work; the architecture below describes the system, while the contribution section identifies changes supported by my commit history.
 
-## 1. Enter a research workspace
+## Verified local run — October 15, 2026
+
+The complete PDF → answer → citation → graph flow now runs with a real FastAPI
+backend, dedicated local MongoDB, and Gemini. The demonstration uses Vaswani et
+al.'s [Attention Is All You Need](https://arxiv.org/abs/1706.03762), downloaded from
+arXiv. No private documents or provider keys are shown.
+
+**Retrieval disclosure:** this local database uses lexical retrieval, not Atlas
+Vector Search. The app explicitly labels that path as degraded. Gemini generated
+the answers and graph; local answer synthesis fallback was disabled.
+
+## 1. Upload and ingest a real PDF
 
 The first-run guide explains a three-step loop: upload a paper, ask a focused question, and verify the evidence. Conversation organization gives the user a place to return to their work.
 
-![Savant first-run research workspace](../assets/savant/first-run.png)
+![Completed ingestion of 15 pages and 39 chunks](../assets/savant/working-upload.png)
 
-*Actual local application screenshot, October 15, 2026. No paper is loaded and no generated answer is shown. The application's “Live Session” label does not indicate a connected backend in this capture.*
+*Actual connected application: the uploaded paper was parsed into 15 pages and
+39 chunks. Those are observed document counts, not a benchmark.*
 
 ## 2. Upload and retrieve evidence
 
-With backend services configured, upload one non-confidential PDF. The implementation creates document metadata and an ingestion job, extracts page text, chunks it, and stores retrieval material. The frontend polls for job completion before document-aware questions can proceed.
+The upload creates document metadata and an ingestion job, extracts text, chunks
+the pages, and stores retrieval material. The frontend now keeps the document
+unavailable until that job completes, preventing premature queries and graphs.
 
 Useful first questions are: “What problem does this paper address?” and “Which evidence supports its main conclusion?” The query path combines vector retrieval with lexical fallback and returns supporting citations with its answer. A user should inspect the cited material rather than treat generated text as verified fact.
 
-**Capture boundary:** this is a source-supported walkthrough of the intended flow. Upload, retrieval, and generation were not completed in the screenshot session because no backend/provider environment was connected.
+I asked why the Transformer uses positional encoding. Gemini returned an answer
+referring to **PDF page 6**, with five retrieved evidence cards. I checked that
+page's positional-encoding section against the answer.
+
+![Real Gemini answer referencing page 6](../assets/savant/working-answer.png)
+
+![Expanded source citation for positional encoding](../assets/savant/working-citation.png)
+
+The expanded card shows a query-relevant passage instead of only the start of a
+chunk. **Jump to Evidence** sets the follow-up page filter to 6; it does not open
+an embedded PDF viewer. A displayed lexical score of zero is not a measured
+semantic confidence score.
 
 ## 3. Explore the graph surface
 
 The graph interface accepts paper context and is designed for selecting concepts and following related questions. The current source also supports revisiting document-bound graph workspaces.
 
-![Savant graph entry interface](../assets/savant/graph-entry.png)
+![Generated Transformer concept graph](../assets/savant/working-graph.png)
 
-*Actual graph entry screen. This is not a successfully generated graph.*
+*Real Gemini-generated output for the uploaded document: 16 concepts and 19
+connections in this run. Generation can vary between runs.*
 
-The built-in **Try Sample** control was exercised locally. Without a reachable backend, it produced a visible fetch warning. That limitation is captured below rather than replaced with invented graph output.
+Selecting **Positional Encoding** opened its summary. I bookmarked the concept,
+then reloaded the application: the conversation, answer/citations, cached graph,
+selected concept, and bookmark were restored.
 
-<details>
-<summary>Observed backend-unavailable state</summary>
-
-![Savant backend-unavailable warning](../assets/savant/backend-unavailable.png)
-
-</details>
+![Restored positional-encoding concept and bookmark](../assets/savant/working-concept.png)
 
 ## My contributions
 
@@ -53,6 +76,12 @@ The built-in **Try Sample** control was exercised locally. Without a reachable b
 | Fixed an unbound local error in the Gemini call path | Repairs an exception-path failure in the backend | [Backend fix](https://github.com/Sansh28/savant-ai/commit/9589812b30ea90f44d2b33e72802f8b5b470f0f3) |
 
 I also committed the initial combined project snapshot. That import is not proof that I independently authored every file; other contributors are visible in the repository history. Later authentication, jobs, and UX changes below describe the current project, not exclusively my individual work.
+
+For this local integration pass I repaired configured MongoDB startup, installation
+reproducibility, client-session and conversation-state races, document-readiness
+timing, and graph workspace restoration. I also added page labels to model context
+after observing an incorrect page citation, improved citation excerpts, and added
+regression coverage. [Integration changes](https://github.com/Sansh28/savant-ai/commit/2663a13) · [Implementation and verification record](https://github.com/Sansh28/savant-ai/blob/main/docs/DEMO_VERIFICATION.md).
 
 ## System architecture
 
@@ -87,12 +116,25 @@ Source anchors: [document/job routes](https://github.com/Sansh28/savant-ai/blob/
 
 ## Validation and current limits
 
-The local frontend rendered, assistant/graph navigation worked, and the backend-unavailable state was observed. Screenshots are unmodified application captures. The canonical frontend lockfile failed a clean install due to missing optional dependency entries; a local install without rewriting the lockfile allowed this UI capture. No dependency or application-code repair is included in this publication.
+Screenshots are unmodified application captures from a connected local run.
+Backend checks passed 16 tests plus Ruff; frontend checks passed 9 tests,
+TypeScript, ESLint, and production build; extension checks passed 7 tests,
+typecheck, and build. The extension was not exercised in-browser during this run.
 
-MongoDB/provider integration, PDF question answering, generated graphs, extension behavior, and audio were not verified in this session. No accuracy, latency, load, or production-readiness result is claimed. Some older architecture notes predate the signed-session and job implementation; the source links above are the reference for those specific details.
+Live checks additionally confirmed no-token access returns 401 and another client
+cannot read the uploaded document (404). These checks are distinct from the mocked
+unit/API/component suites. Installation instructions are in the
+[local demo guide](https://github.com/Sansh28/savant-ai/blob/main/docs/LOCAL_DEMO.md).
+
+This demonstrates one public paper on local MongoDB with real Gemini generation.
+It does not validate Atlas vector search, a hosted backend, retrieval accuracy
+over a dataset, production load, or ElevenLabs. No accuracy, speed, or production
+readiness claim is made from one demonstration.
 
 ## A useful next engineering iteration
 
-Restore reproducible installation, configure a disposable backend environment, and record an upload → question → citation → graph run with a public sample paper. Then measure retrieval quality on a fixed question set and test failure/restart behavior before advertising a hosted demo.
+Validate the Atlas vector index and hosted backend separately, evaluate retrieval
+and citation quality on a fixed question set, and introduce durable job recovery
+before advertising production readiness.
 
 [Read the source →](https://github.com/Sansh28/savant-ai)
