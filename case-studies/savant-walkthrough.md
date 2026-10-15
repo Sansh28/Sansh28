@@ -2,7 +2,7 @@
 
 **Context:** HackCU team project · **My work:** frontend integration and debugging, graph typing, speech types, backend error handling · **Source:** public
 
-[Repository](https://github.com/Sansh28/savant-ai) · [My contribution examples](#my-contributions) · [Back to profile](../README.md)
+[Try the live demo](https://hackcu12.vercel.app/) · [Repository](https://github.com/Sansh28/savant-ai) · [My contribution examples](#my-contributions) · [Back to profile](../README.md)
 
 ## What the product is for
 
@@ -10,7 +10,25 @@ Savant helps a reader move from a research paper to questions, supporting citati
 
 Savant received the MLH MongoDB Track award at HackCU, as recorded in my [portfolio project background](https://sansh-portfolio.vercel.app/#projects). It was team work; the architecture below describes the system, while the contribution section identifies changes supported by my commit history.
 
-## Verified local run — October 15, 2026
+## Verified hosted demo — October 15, 2026
+
+The public [Vercel app](https://hackcu12.vercel.app/) now calls a free Render FastAPI service connected to MongoDB Atlas and Gemini. The Atlas `vector_index` is queryable and uses 3072-dimensional embeddings with owner/document/page prefilters.
+
+I tested the actual hosted website with *Attention Is All You Need*: **15 pages, 39 embedded chunks**, a real Gemini answer citing **PDF page 6**, five evidence cards, and a graph containing **16 concepts and 20 connections**. The page-6 citation had a nonzero Atlas similarity score (0.8878). Scores are retrieval signals, not answer-confidence probabilities.
+
+![Hosted answer and expanded page-6 evidence](../assets/savant/hosted-citation.jpg)
+
+The graph supported concept selection, a Gemini follow-up about positional encoding, and bookmarking. After reloading, the answer/citations, cached graph, selected concept, bookmark, and the new saved graph follow-up were restored. The deployment pass also repaired the missing graph-session ID/history wiring so follow-ups persist instead of remaining only in component memory.
+
+![Hosted graph and positional encoding follow-up](../assets/savant/hosted-graph.jpg)
+
+An independent hosted API check confirmed all 39 chunks were embedded, hybrid retrieval returned nonzero vector scores, generation did not use local synthesis fallback, a second owner received 404 for the document, and no-token access returned 401. A 10 MB-plus upload was rejected with 413. These are bounded functional checks, not a penetration test or quality benchmark.
+
+Deployment fixes included correcting Vercel's obsolete root/framework settings, removing a leftover URI template line, and introducing owner-scoped partial unique indexes so legacy ownerless duplicate records did not need deletion. Public-demo safeguards include a unique signing secret, explicit CORS, authenticated graph endpoints, bounded uploads/inputs, and shared persistent daily provider-call quotas. Atlas network access was narrowed to Render egress ranges while preserving the existing university IP entry.
+
+**Try it:** upload a public PDF, ask “Why does the Transformer use positional encoding?”, open a citation, then switch to **Paper Graph Explorer**. The free backend can take about a minute to wake. Upload non-sensitive public documents only: extracted content is stored in Atlas and sent to Google. Daily AI limits are shared. ElevenLabs is not configured; browser speech is optional. Jobs remain in-process and can be interrupted by host restarts. This demo does not establish production readiness.
+
+## Earlier verified local run — October 15, 2026
 
 The complete PDF → answer → citation → graph flow now runs with a real FastAPI
 backend, dedicated local MongoDB, and Gemini. The demonstration uses Vaswani et

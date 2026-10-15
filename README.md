@@ -24,7 +24,9 @@ Explore research PDFs through retrieval-backed conversations, supporting citatio
 
 **Stack:** TypeScript, Python, Next.js, FastAPI, MongoDB Atlas, Gemini.
 
-[See the illustrated walkthrough and my contributions](case-studies/savant-walkthrough.md) · [Source code](https://github.com/Sansh28/savant-ai)
+[Try the live demo →](https://hackcu12.vercel.app/) · [Illustrated walkthrough and my contributions](case-studies/savant-walkthrough.md) · [Source code](https://github.com/Sansh28/savant-ai)
+
+Free-hosted demo: allow about a minute for startup. Use public PDFs only; daily AI usage is shared and limited.
 
 ### Employed Indian · In development
 
