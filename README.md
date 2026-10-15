@@ -16,7 +16,7 @@ The application also includes staff workflows for property authoring, media revi
 
 **Stack:** Next.js, TypeScript, Supabase PostgreSQL/Auth/Storage, row-level security, Vercel.
 
-[Visit GG Luxury Homes →](https://gg-luxury-homes.vercel.app/) · Source code is private.
+[Read the illustrated case study](case-studies/gg-luxury-homes.md) · [Visit GG Luxury Homes →](https://gg-luxury-homes.vercel.app/) · Source code is private.
 
 ### Savant AI · Research assistant
 
@@ -24,7 +24,7 @@ Explore research PDFs through retrieval-backed conversations, supporting citatio
 
 **Stack:** TypeScript, Python, Next.js, FastAPI, MongoDB Atlas, Gemini.
 
-[Source code](https://github.com/Sansh28/savant-ai) · [Architecture](https://github.com/Sansh28/savant-ai/blob/main/docs/ARCHITECTURE.md)
+[See the illustrated walkthrough and my contributions](case-studies/savant-walkthrough.md) · [Source code](https://github.com/Sansh28/savant-ai)
 
 ### Employed Indian · In development
 
