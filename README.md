@@ -8,11 +8,39 @@ I build full-stack applications, retrieval-based AI workflows, and cloud data pi
 
 ## Selected work
 
-| Project | What it does | Engineering focus |
-| --- | --- | --- |
-| **[Savant AI](https://github.com/Sansh28/savant-ai)** | Research assistant for exploring PDFs through retrieval-backed conversations, citations, and concept graphs | Next.js, FastAPI, MongoDB Atlas Vector Search, Gemini, Chrome extension |
-| **[Employed Indian](https://github.com/Sansh28/Employed-Indian)** | Job discovery and application tracking with fit scoring and compensation tools | Next.js, TypeScript, PostgreSQL, Prisma, Redis, BullMQ |
-| **[Personal Portfolio](https://github.com/Sansh28/portfolio)** | Selected projects, professional experience, and ways to connect | Next.js, React, TypeScript, Tailwind CSS, server-side integrations |
+### GG Luxury Homes · Live business website
+
+Built and deployed a website for a New Delhi luxury real-estate advisory. It presents the company's services, public property collection, and individual Property Passports, giving prospective buyers a route from discovery to an advisor conversation.
+
+The application also includes staff workflows for property authoring, media review, publication, and withdrawal. Engineering work centers on controlling what becomes public while keeping private property information protected.
+
+**Stack:** Next.js, TypeScript, Supabase PostgreSQL/Auth/Storage, row-level security, Vercel.
+
+[Visit GG Luxury Homes →](https://gg-luxury-homes.vercel.app/) · Source code is private.
+
+### Savant AI · Research assistant
+
+Explore research PDFs through retrieval-backed conversations, supporting citations, and interactive concept graphs. The system connects a Next.js web application, FastAPI backend, MongoDB Atlas Vector Search, and a Chrome extension.
+
+**Stack:** TypeScript, Python, Next.js, FastAPI, MongoDB Atlas, Gemini.
+
+[Source code](https://github.com/Sansh28/savant-ai) · [Architecture](https://github.com/Sansh28/savant-ai/blob/main/docs/ARCHITECTURE.md)
+
+### Employed Indian · In development
+
+Building a job discovery and application-tracking platform for the Indian hiring market. It brings together role filtering, candidate profiles, fit scoring, shortlisting, an application board, and compensation comparison. Background ingestion handles job collection and deduplication separately from the interactive application.
+
+**Stack:** TypeScript, Next.js, PostgreSQL, Prisma, Redis, BullMQ.
+
+**Status:** actively being built; not publicly launched. Source code is private.
+
+### Personal Portfolio · Live
+
+An engineering portfolio covering selected projects, professional experience, and contact. Built with a custom responsive interface, a server-side GitHub feed, and contact email integration.
+
+**Stack:** Next.js, React, TypeScript, Tailwind CSS, Resend.
+
+[Visit website](https://sansh-portfolio.vercel.app/) · [Source code](https://github.com/Sansh28/portfolio)
 
 Savant received the **MLH MongoDB Track award at HackCU**. [Project background →](https://sansh-portfolio.vercel.app/#projects)
 
