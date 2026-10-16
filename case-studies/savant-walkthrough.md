@@ -26,7 +26,7 @@ An independent hosted API check confirmed all 39 chunks were embedded, hybrid re
 
 Deployment fixes included correcting Vercel's obsolete root/framework settings, removing a leftover URI template line, and introducing owner-scoped partial unique indexes so legacy ownerless duplicate records did not need deletion. Public-demo safeguards include a unique signing secret, explicit CORS, authenticated graph endpoints, bounded uploads/inputs, and shared persistent daily provider-call quotas. Atlas network access was narrowed to Render egress ranges while preserving the existing university IP entry.
 
-**Try it:** upload a public PDF, ask “Why does the Transformer use positional encoding?”, open a citation, then switch to **Paper Graph Explorer**. The free backend can take about a minute to wake. Upload non-sensitive public documents only: extracted content is stored in Atlas and sent to Google. Daily AI limits are shared. ElevenLabs is not configured; browser speech is optional. Jobs remain in-process and can be interrupted by host restarts. This demo does not establish production readiness.
+**Try it:** click **Upload research PDF** at the top of the website, choose a public PDF, ask “Why does the Transformer use positional encoding?”, open a citation, then switch to **Paper Graph Explorer**. The upload button is also available from graph mode. The free backend can take about a minute to wake. Upload non-sensitive public documents only: extracted content is stored in Atlas and sent to Google. Daily AI limits are shared. ElevenLabs is not configured; browser speech is optional. Jobs remain in-process and can be interrupted by host restarts. This demo does not establish production readiness.
 
 ## Earlier verified local run — October 15, 2026
 
