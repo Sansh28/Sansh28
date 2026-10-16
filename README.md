@@ -36,6 +36,14 @@ Building a job discovery and application-tracking platform for the Indian hiring
 
 **Status:** actively being built; not publicly launched. Source code is private.
 
+### Coursework · ML systems and evaluation
+
+**Wildfire Detection MVP** — A reproducible PyTorch pipeline for satellite-informed wildfire detection, comparing a static ResNet-18 baseline with a temporal-attention model. Includes event-level splits, calibration and uncertainty diagnostics, and threshold-policy analysis. [Source and report](https://github.com/Sansh28/Wildfire-Detection-MVP)
+
+**AI-WxBench** — A seven-day, 224-prediction benchmark comparing LLM weather forecasts with a specialized weather application for Boulder, Colorado. [Read the study and view the visualizations](https://github.com/Sansh28/AI-WxBench)
+
+**CSCI 4922/5922 Wildfire Report** — Submitted coursework report archive, published alongside the reproducible implementation. [Open the report](https://github.com/Sansh28/CSCI-4922-Wildfire-Report)
+
 ### Personal Portfolio · Live
 
 An engineering portfolio covering selected projects, professional experience, and contact. Built with a custom responsive interface, a server-side GitHub feed, and contact email integration.
